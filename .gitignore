@@ -76,4 +76,4 @@ testem.log
 
 # ignore all in custom-texts/*.txt and custom-texts/*.json
 custom-texts/*.txt
-# custom-texts/*.json
+custom-texts/*.json
