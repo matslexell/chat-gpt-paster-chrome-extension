@@ -13,9 +13,10 @@ Tired of repetitively explaining the same concepts to ChatGPT? This compact Chro
 1. **Download the repository:** Clone this repo, or use the "Code" button on the repository page to download the ZIP file and extract it.
 2. **Open Chrome Extensions page:** Navigate to `chrome://extensions/` in Chrome.
 3. **Enable Developer Mode:** Toggle "Developer Mode" on in the top right of the Extensions page.
-4. **Load Unpacked Extension:** Use the "Load unpacked" button to select the extracted repository folder.
+4. **Load Unpacked Extension:** Use the "Load unpacked" button to select the extracted repository folder. The extension is now active in Google Chrome.
+5. **Setup Custom Buttons:** Duplicate `resources/textsConfig.json` to `custom-texts/textsConfig.json` to configure custom buttons. Changes in `custom-texts` aren't tracked by git.
 
-The extension is now active in Google Chrome.
+
 
 ## Structure
 
@@ -29,7 +30,7 @@ To add more buttons that paste different texts when clicked, you will need to fo
 
 1. **Create a text file**: Create a new `.txt` file in the `custom-texts` directory with the text you want the button to paste.
 
-2. **Update `textsConfig.json`**: Copy the template file named `_textsConfig.json` to `textsConfig.json`. Add a new item to this file in the following format:
+2. **Configure `textsConfig.json`**: After duplicating `resources/textsConfig.json` to `custom-texts/textsConfig.json`, open the new file and define your custom buttons as follows:
    ```json
    {
      "title": "Your Button Name",
@@ -37,4 +38,4 @@ To add more buttons that paste different texts when clicked, you will need to fo
    }
    ```
 
-Replace **`"Your Button Name"`** with the name you want to display on the button, and **`"your-text-file.txt"`** with the name of the text file you created in the **`custom-texts`** directory. *.txt and *.json files will not be tracked by git.
+Replace **`"Your Button Name"`** with the name you want to display on the button, and **`"your-text-file.txt"`** with the name of the text file you created in the **`custom-texts`** directory. **`custom-texts/*.txt`** and **`custom-texts/*.json`** files will not be tracked by git.
