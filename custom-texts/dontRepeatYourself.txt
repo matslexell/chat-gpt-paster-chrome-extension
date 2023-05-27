@@ -1,0 +1,2 @@
+From now on don't repeat yourself please. I am only interested in you giving me code snippets that contains what I have to change. Just a tiny bit of context is enough for me to realize where this fits in. To clarify: You usually give verbose examples where you rewrite a lot of code, even parts that doesn't require edits: I DO NOT WANT YOU TO DO THIS, Please provide the smallest possible change to fix the issue I'm asking you about.
+

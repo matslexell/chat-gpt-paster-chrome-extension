@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Give a minimal reply",
+    "textfile": "giveMinimalReplyPrompt.txt"
+  },
+  {
+    "title": "Don't repeat yourself",
+    "textfile": "dontRepeatYourself.txt"
+  }
+]

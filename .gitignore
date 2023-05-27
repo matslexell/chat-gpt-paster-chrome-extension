@@ -1,0 +1,79 @@
+# Images
+#*.png
+#*.jpeg
+#*.jpg
+#*.PNG
+#*.JPEG
+#*.JPG
+
+# Video files
+*.mov
+*.mp4
+*.gif
+*.avi
+*.mpg
+*.mp2
+*.mpg
+*.mpe
+*.mpv
+*.MOV
+*.MP4
+*.GIF
+*.AVI
+*.MPG
+*.MP2
+*.MPG
+*.MPE
+*.MPV
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+
+# Development files
+.env.local
+
+# Dependencies
+node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9
+*.launch
+.settings
+*.sublime-workspace
+
+# Java and stuff
+*.class
+.idea/
+**/.idea/**
+*.iml
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+
+# ignore all in custom-texts/*.txt and custom-texts/*.json
+custom-texts/*.txt
+# custom-texts/*.json

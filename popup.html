@@ -1,7 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <button id="minimal">Give a minimal reply</button>
+
+<body>
+    <style>
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+        }
+        .rowFlex {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            gap: 10px;
+        }
+        button {
+            font-size: 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100%;
+            min-height: 20px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: none;
+            background-color: #0095ff;
+            color: white;
+            cursor: pointer;
+            margin-bottom: 5px;
+            margin-top: 5px;
+            vertical-align: middle;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button:hover {
+            background-color: #0070cc;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid lightgrey;
+            margin: 20px 0;
+        }
+    </style>
     <script src="popup.js"></script>
-  </body>
+</body>
+
 </html>
