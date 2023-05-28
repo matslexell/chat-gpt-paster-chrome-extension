@@ -45,46 +45,73 @@ const main = async () => {
       });
     }
 
-    function copyToClipboard(text) {
-      const tempInput = document.createElement('textarea');
-      tempInput.style = 'position: absolute; left: -1000px; top: -1000px';
-      tempInput.value = text;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      document.execCommand('copy');
-      document.body.removeChild(tempInput);
-    }
     return {
       pasteText,
-      copyToClipboard,
       increasePrompt,
       decreasePrompt,
       resetPrompt,
     };
   };
 
-  let functionSetByCheckbox = 'pasteText';
-  async function createButton(text, arg, container, functionInputParam) {
-    if (arg.endsWith('txt')) {
+  const copyToClipboardButton = (text) => {
+    const id = `${Math.random()}-clipboard-svg`;
+    const clipboardButton = document.createElement('div');
+    clipboardButton.className = 'clipboard-button';
+    clipboardButton.innerHTML = `<img id="${id}" src="assets/clipboard.svg" width="20" height="20">`;
+    clipboardButton.title = 'Copy to clipboard';
+
+    const tooltip = document.createElement('span');
+    tooltip.className = 'tooltip';
+    tooltip.textContent = 'Copied!';
+    tooltip.style.visibility = 'hidden';
+    clipboardButton.appendChild(tooltip);
+
+    clipboardButton.addEventListener('click', function () {
+      // Reset previous clipboard buttons
+      const tooltips = document.getElementsByClassName('tooltip');
+      for (const tooltip of tooltips) tooltip.style.visibility = 'hidden';
+      const svgs = document.querySelectorAll('img[id$="-clipboard-svg"]');
+      for (const svg of svgs) svg.src = 'assets/clipboard.svg';
+
+      const textarea = document.createElement('textarea');
+      textarea.value = text.trim();
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+
+      const svg = document.getElementById(`${id}`);
+      svg.src = 'assets/tick.svg';
+      tooltip.style.visibility = 'visible';
+      setTimeout(function () {
+        svg.src = 'assets/clipboard.svg';
+        tooltip.style.visibility = 'hidden';
+      }, 2000);
+    });
+
+    return clipboardButton;
+  };
+
+  async function createButton(
+    buttonName,
+    arg,
+    container,
+    functionInputParam = 'pasteText',
+  ) {
+    const buttonsContainer = document.createElement('div');
+
+    const button = document.createElement('button');
+    button.textContent = buttonName;
+    if (functionInputParam === 'pasteText') {
       try {
         arg = await loadText(arg);
+        button.title = arg.trim();
       } catch {
-        text = `ERROR: Could not load textfile ${arg}`;
+        buttonName = `ERROR: Could not load textfile ${arg}`;
       }
     }
-    const button = document.createElement('button');
-    button.textContent = text;
-    container.appendChild(button);
     button.addEventListener('click', function () {
-      fun = functionInputParam || functionSetByCheckbox;
-      if (fun === 'copyToClipboard') {
-        const label = document.getElementById('copyToClipboard');
-        label.textContent = 'Text copied!';
-        setTimeout(function () {
-          label.textContent = 'Copy to clipboard';
-        }, 2000);
-      }
-      const codeToExecute = `(${extensionContext})().${fun}${
+      const codeToExecute = `(${extensionContext})().${functionInputParam}${
         arg === '' ? '()' : `(${JSON.stringify(arg)})`
       }`;
 
@@ -94,6 +121,15 @@ const main = async () => {
         });
       });
     });
+    buttonsContainer.appendChild(button);
+    buttonsContainer.className = 'button-container';
+
+    if (functionInputParam === 'pasteText') {
+      const svgButton = copyToClipboardButton(arg);
+      buttonsContainer.appendChild(svgButton);
+    }
+
+    container.appendChild(buttonsContainer);
   }
 
   const divDefault = document.createElement('div');
@@ -105,36 +141,6 @@ const main = async () => {
   divDefault.appendChild(innerDiv);
   document.body.appendChild(divDefault);
   document.body.appendChild(document.createElement('hr'));
-
-  const createCheckboxes = () => {
-    let allCheckboxes = [];
-    function createCheckBox(text, container, id) {
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      const label = document.createElement('label');
-      label.id = id;
-      label.appendChild(document.createTextNode(text));
-      container.appendChild(checkbox);
-      container.appendChild(label);
-
-      checkbox.addEventListener('change', function () {
-        if (this.checked) {
-          allCheckboxes.forEach((item) => {
-            if (item !== this) item.checked = false;
-          });
-          functionSetByCheckbox = id;
-        }
-      });
-      allCheckboxes.push(checkbox);
-    }
-    const checkboxDiv = document.createElement('div');
-    checkboxDiv.className = 'rowFlex';
-    createCheckBox('Paste to prompt', checkboxDiv, 'pasteText');
-    createCheckBox('Copy to clipboard', checkboxDiv, 'copyToClipboard');
-    document.body.appendChild(checkboxDiv);
-    allCheckboxes[0].checked = true;
-  };
-  createCheckboxes();
 
   const divCustom = document.createElement('div');
   const data = await fetch(

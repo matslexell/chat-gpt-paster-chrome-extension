@@ -9,6 +9,7 @@
             align-items: center;
             width: 300px;
         }
+
         .rowFlex {
             display: flex;
             flex-direction: row;
@@ -16,6 +17,40 @@
             width: 100%;
             gap: 10px;
         }
+
+        .button-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 5px;
+        }
+
+        .clipboard-button {
+            position: relative;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 90%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 5px;
+            padding: 2px 5px;
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 10px;
+            white-space: nowrap;
+        }
+
         button {
             font-size: 14px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -42,7 +77,7 @@
         hr {
             border: none;
             border-top: 1px solid lightgrey;
-            margin: 20px 0;
+            margin: 10px 0;
         }
     </style>
     <script src="popup.js"></script>
