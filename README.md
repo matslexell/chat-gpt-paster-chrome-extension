@@ -1,4 +1,4 @@
-# Chat GTP paster chrome extension
+# Chat GPT paster chrome extension
 
 Tired of repetitively explaining the same concepts to ChatGPT? This compact Chrome extension lets you quickly paste predefined text and adjust the prompt size. Plus, with a simple configuration, you can easily add your own custom buttons.
 
